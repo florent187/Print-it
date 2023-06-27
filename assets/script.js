@@ -54,12 +54,6 @@ const slides = [
   }
   
   
-  function onDotClick(index) {
-	currentIndex = index;
-	showImage();
-  }
-  
-  
   function showImage() {
 	const imageElement = banner.querySelector('.banner-img');
 	const tagLineElement = banner.querySelector('p');
@@ -77,9 +71,7 @@ const slides = [
 	slides.forEach((_, index) => {
 	  const dot = document.createElement("span");
 	  dot.className = "dot";
-	  dot.addEventListener("click", () => {
-		onDotClick(index); // Appeler la fonction onDotClick lorsqu'un bullet point est cliqué
-	  });
+	  
 	  if (index === currentIndex) {
 		dot.classList.add("dot_selected"); // Ajouter la classe "dot_selected" pour le point correspondant à la diapositive en cours
 	  }
