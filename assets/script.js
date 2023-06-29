@@ -61,26 +61,32 @@ const slides = [
 	const slide = slides[currentIndex];
   
 	// Modifier l'image et la ligne de texte de la bannière
-	imageElement.src = "./assets/images/slideshow/" + slide.image;
+	imageElement.src = "assets/images/slideshow/" + slide.image;
 	tagLineElement.innerHTML = slide.tagLine;
   
 	// Mettre à jour les bullet points
 	const dotsContainer = document.querySelector('.dots');
 	dotsContainer.innerHTML = ''; // Supprimer les bullet points précédents
   
-	slides.forEach((_, index) => {
-	  const dot = document.createElement("span");
-	  dot.className = "dot";
-	  
+	slides.forEach((slide, index) => {
+	  const dot = createDot();
+  
 	  if (index === currentIndex) {
-		dot.classList.add("dot_selected"); // Ajouter la classe "dot_selected" pour le point correspondant à la diapositive en cours
+		selectDot(dot); // Ajouter la classe "dot_selected" pour le point correspondant à la diapositive en cours
 	  }
-
-	  if (index === 0 && currentIndex === 0) {
-		dot.classList.add("dot_selected"); // Ajouter la classe "dot_selected" pour le point correspondant à la première diapositive
-	  }
+  
 	  dotsContainer.appendChild(dot);
 	});
+  }
+  
+  function createDot() {
+	const dot = document.createElement("span");
+	dot.className = "dot";
+	return dot;
+  }
+  
+  function selectDot(dot) {
+	dot.classList.add("dot_selected");
   }
   // Appeler la fonction showImage() pour afficher la première image lors du chargement de la page
   showImage();
